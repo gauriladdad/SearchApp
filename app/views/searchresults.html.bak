@@ -1,0 +1,8 @@
+<form class="form-horizontal">
+  <div class="control-group">
+		<input type="search"  results=1 data-ng-model="searchQuery" class="input-medium search-query" placeholder="Specify Search Text. e.g. Flower valley" />
+
+		<button type="submit" class="btn">Search</button>
+	</div>
+</form>
+
