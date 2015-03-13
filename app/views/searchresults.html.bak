@@ -1,13 +1,20 @@
 <div class="container">
-	<form class="form-horizontal">
-		<div class="control-group">
-			<input type="search"  results=1 data-ng-model="searchQuery" class="input-medium search-query" placeholder="Specify Search Text. e.g. Flower valley" />
 
-			<button type="submit" class="btn btn-primary" data-ng-click="search()">Search</button>
+	<!-- search query input area-->
+	<form class="form-horizontal" name="queryForm" novalidate>
+		<div class="control-group">
+			<input type="search" name="query" results=1 data-ng-model="searchQuery" class="input-medium search-query" 
+			placeholder="Specify Search Text. e.g. Flower valley" required/>
+
+			<button type="submit" class="btn btn-primary" data-ng-click="search()"
+			ng-disabled="queryForm.query.$dirty && queryForm.query.$invalid"> Search</button>
+			<!--$dirty	The user has interacted with the field.
+				$invalid The field content is invalid.-->
 		</div>
 	</form>
 
-	  <div data-ng-show="totalRecordsCount > 0">
+	<!---result display area-->
+	<div data-ng-show="totalRecordsCount > 0">
             
-        </div>
+	</div>
 </div>
