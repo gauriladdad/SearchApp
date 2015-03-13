@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html data-ng-app="DuckDuckGoSearchApp">
+
+	<head>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    
+		<title>Search With DuckDuckGo API</title>
+	    	
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    
+	</head>
+
+	<body>
+
+		<div id="page">
+			<header>
+				<div id="menu">
+					<a href='#/'>
+						<h4>Search Using Duck Duck Go API</h4>
+					</a>
+				<div>
+				<ul> 
+					<li><a href="#/search">Search</a></li>                        						
+					<li><a href="#/about">About</a></li>
+					</ul>
+				</div>
+			
+			</header>
+			
+			<section id="body">
+				<div data-ng-view=""></div>
+			</section>
+ 
+	        <hr />
+ 
+		<footer>
+			Created by Gauri Gattani <a target="_blank" href="https://in.linkedin.com/pub/gauri-gattani/b/227/a27"> LinkedIn </a>
+	    </footer>
+
+	</body>
+
+</html>
+
+<!-- load 3rd party libraries -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
+<!-- This repository contains a set of native AngularJS directives based on Bootstrap's markup and CSS. 
+As a result no dependency on jQuery or Bootstrap's JavaScript is required. -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js"></script>
+
+<!-- Load app main script -->
+<script type="text/javascript" src="app/app.js"></script>
