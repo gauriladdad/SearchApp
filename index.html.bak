@@ -17,20 +17,19 @@
 	<body>
 
 		<div id="page">
-			<nav class="navbar navbar-inverse">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand" href='#/'>Search Using Duck Duck Go API</a>
-					</div>
-					<div>
-						<ul class="nav navbar-nav"> 
-							<li class="active"><a href="#">Search</a></li>                        						
-							<li><a href="#/about">About</a></li>
-						</ul>
-					</div>
-				</div>												
-			</nav>
+			<header class="">
+				<div class="navbar navbar-default" id="menu">
+					<a href='#/'>
+						<h4>Search Using Duck Duck Go API</h4>
+					</a>
+				<div>
+				<ul> 
+					<li><a href="#/search">Search</a></li>                        						
+					<li><a href="#/about">About</a></li>
+					</ul>
+				</div>
 			
+			</header>
 			
 			<section id="body">
 				<div data-ng-view=""></div>

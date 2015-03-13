@@ -4,7 +4,7 @@ var app = angular.module('DuckDuckGoSearchApp', ['ngRoute', 'ngResource', 'ui.bo
 app.config(function ($routeProvider) {
  
 /*  We only have two routes as of now -> Search and About */
-    $routeProvider.when("/", {
+    $routeProvider.when("/search", {
         controller: "searchResultsController",
         templateUrl: "app/views/searchresults.html"
     });		
@@ -14,6 +14,6 @@ app.config(function ($routeProvider) {
     });
 	
 	/* return to URL /search when ever a matching URL is not found */
-    $routeProvider.otherwise({ redirectTo: "/" });
+    $routeProvider.otherwise({ redirectTo: "/search" });
  
 });
