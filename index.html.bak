@@ -11,7 +11,9 @@
 
 		<!-- this application uses bootstrap.css for styling app-->
 		<link href="content/css/bootstrap.min.css" rel="stylesheet" />
-    
+		<!-- application level styles file-->
+		<link href="content/css/site.css" rel="stylesheet" />
+				
 	</head>
 
 	<body>
@@ -58,4 +60,7 @@ As a result no dependency on jQuery or Bootstrap's JavaScript is required. -->
 <script type="text/javascript" src="app/app.js"></script>
 
 <!-- Load controllers -->
-<script type="text/javascript" src="app/controllers/searchResultsController.js"></script>
+<script type="text/javascript" src="app/controller/searchResultsController.js"></script>
+
+<!-- Load Filters -->
+<script type="text/javascript" src="app/filters/rangeFilter.js"></script>

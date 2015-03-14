@@ -1,7 +1,21 @@
+app.filter("myFilter", function(){
+    return function(input, test){
+        var newArray = [];
+        for(var x = 0; x < input.length; x+=2){
+             newArray.push(input[x]);   
+        }
+        return newArray;
+    }
+});
+
 app.controller('searchResultsController', function ($scope, $resource) {
 	
 	$scope.searchQuery="";
+
+	//the object that will hold images data to be rendered on UI
 	$scope.searchResult = [];
+
+	//total number of records matching search criteria
 	$scope.totalRecordsCount = 0;
 	 
 	/* create object with angularJS resource service to get data from duckduckgo API */
@@ -18,7 +32,9 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		duckduckgoAPI.get({ q: $scope.searchQuery , iax: 1, ia:"images", format:'json', pretty:1  }).$promise.then(
 			//on success
 			function( result ) {
+
                 $scope.searchResult=$scope.updateSearchResult(result);
+
                 $scope.totalRecordsCount = $scope.searchResult.length;
             },
 			//on failure

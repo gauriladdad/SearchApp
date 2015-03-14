@@ -1,3 +1,13 @@
+app.filter("myFilter", function(){
+    return function(input, test){
+        var newArray = [];
+        for(var x = 0; x < input.length; x+=4){
+             newArray.push(input[x]);   
+        }
+        return newArray;
+    }
+});
+
 app.controller('searchResultsController', function ($scope, $resource) {
 	
 	$scope.searchQuery="";
