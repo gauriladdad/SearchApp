@@ -2,14 +2,9 @@ app.controller('searchResultsController', function ($scope, $resource) {
 	
 	$scope.searchQuery="";
 
-	//the object that will hold images data to be rendered on UI
-	$scope.searchResult = [];
-
-	/*total number of records matching search criteria 
-	set to -1 instead of 0 so no records found link is not shown */
-	$scope.totalRecordsCount=-1;
-	
-	$scope.linkForMoreResults="";
+	/* This object maintains state of the result.
+	total number of records : set to -1 instead of 0 so no records found link is not shown */
+	$scope.searchResultData = {query: "", searchResult : [], totalRecordsCount: -1, linkForMoreResults:""};
 	 
 	/* create object with angularJS resource service to get data from duckduckgo API */
 	var duckduckgoAPI = $resource("https://api.duckduckgo.com",
@@ -19,8 +14,8 @@ app.controller('searchResultsController', function ($scope, $resource) {
 	/* define search function - which will be invoked on search button click*/
 	$scope.search = function() {
 		//define intial value of search results array
-		$scope.searchResult=[];
-		
+		$scope.searchResultData.searchResult=[];
+		$scope.searchResultData.query = $scope.searchQuery;
 		//invoke get function 
 		duckduckgoAPI.get({ q: $scope.searchQuery , iax: 1, ia:"images", format:'json', pretty:1  }).$promise.then(
 			//on success
@@ -39,18 +34,18 @@ app.controller('searchResultsController', function ($scope, $resource) {
 						$scope.updateIconsArray(icons, value);
 					}				
 				});	
-				$scope.searchResult=icons;
-				$scope.totalRecordsCount = icons.length;
+				$scope.searchResultData.searchResult=icons;
+				$scope.searchResultData.totalRecordsCount = icons.length;
 				if($scope.searchQuery.length > 0)
 				{
-					$scope.linkForMoreResults="https://duckduckgo.com/?q="+$scope.searchQuery;					
+					$scope.searchResultData.linkForMoreResults="https://duckduckgo.com/?q="+$scope.searchQuery;					
 				}					
 			},
 			//on failure
 			function( error ) {
-				$scope.searchResult = [];
-				$scope.totalRecordsCount = -1;
-				$scope.linkForMoreResults="";									
+				$scope.searchResultData.searchResult = [];
+				$scope.searchResultData.totalRecordsCount = -1;
+				$scope.searchResultData.linkForMoreResults="";									
 			}
 		);
 	};

@@ -8,7 +8,7 @@
 				<div class="input-group">     
 				<input type="search" name="query" results=1 data-ng-model="searchQuery"
 						placeholder="Specify Search Text. e.g. Flower valley" 
-						class="form-control" required/>
+						class="form-control" required data-ng-change="searchQueryChange"/>
 				 
 					<span class="input-group-btn">
 						<button type="submit" class="btn btn-default" data-ng-click="search()"
@@ -23,12 +23,12 @@
 
 
 	<!---result display area, displayed only if result data is available -->
-	<div data-ng-show="totalRecordsCount > 0" class="sectionStyle">
+	<div data-ng-show="searchResultData.totalRecordsCount > 0" class="sectionStyle">
 		<div class="row-fluid" class="sectionStyle"> 
 			<div class="blockWithTopSpacing">
-				<p class="text-muted">Showing {{totalRecordsCount}} images for {{searchQuery}}</p>
+				<p class="text-muted">Showing {{searchResultData.totalRecordsCount}} images for {{searchResultData.query}}</p>
 			</div>
-			<div ng-repeat="item in searchResult" class="col-md-3 col-xs-2 imgContainer" id="row">
+			<div ng-repeat="item in searchResultData.searchResult" class="col-md-3 col-xs-2 imgContainer" id="row">
 				<a href="{{item.reference}}" target="_blank">
 					<img ng-src="{{item.source}}" class="imageClass" title="{{item.title}}"> 					
 				</a>				
@@ -37,8 +37,8 @@
 		</div>		
 	</div>
 	
-	<div data-ng-show="totalRecordsCount === 0" class="blockWithTopSpacing">
+	<div data-ng-show="searchResultData.totalRecordsCount === 0" class="blockWithTopSpacing">
 		<p class="text-muted">OOPS! No matching records found</p>
-		<a href="{{linkForMoreResults}}" target="_blank">For possible matches, please click here</a>
+		<a href="{{searchResultData.linkForMoreResults}}" target="_blank">For possible matches, please click here</a>
 	</div>	
 </div>
