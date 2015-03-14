@@ -37,7 +37,7 @@ app.controller('searchResultsController', function ($scope, $resource) {
 					}				
 				});	
 				$scope.searchResult=icons;
-                $scope.totalRecordsCount = $scope.searchResult.length;
+                $scope.totalRecordsCount = icons.length;
             },
 			//on failure
 			function( error ) {

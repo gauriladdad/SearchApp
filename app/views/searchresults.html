@@ -14,13 +14,15 @@
 				$invalid The field content is invalid.-->
 		</div>
 	</form>
+	
 	<!---result display area, displayed only if result data is available -->
 	<div data-ng-show="totalRecordsCount > 0">
 		<div class="row-fluid"> 
 			<div ng-repeat="item in searchResult" class="col-md-3 col-xs-2 imgContainer" id="row">
 				<a href="{{item.reference}}" target="_blank">
-					<img ng-src="{{item.source}}" class="imageClass" title="{{item.title}}"> 
+					<img ng-src="{{item.source}}" class="imageClass" title="{{item.title}}"> 					
 				</a>				
+				
 			</div> 
 		</div>		
 	</div>
