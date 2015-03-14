@@ -61,6 +61,3 @@ As a result no dependency on jQuery or Bootstrap's JavaScript is required. -->
 
 <!-- Load controllers -->
 <script type="text/javascript" src="app/controller/searchResultsController.js"></script>
-
-<!-- Load Filters -->
-<script type="text/javascript" src="app/filters/rangeFilter.js"></script>

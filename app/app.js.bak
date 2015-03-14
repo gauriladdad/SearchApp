@@ -1,4 +1,4 @@
-var app = angular.module('DuckDuckGoSearchApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+var app = angular.module('DuckDuckGoSearchApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.filters']);
 
 /* configure the routes. */
 app.config(function ($routeProvider) {
@@ -16,13 +16,4 @@ app.config(function ($routeProvider) {
 	/* return to URL /search when ever a matching URL is not found */
     $routeProvider.otherwise({ redirectTo: "/" });
  
-});
-
-app.filter('range', function() {
-  return function(input, total) {
-    total = parseInt(total);
-    for (var i=0; i<total; i++)
-      input.push(i);
-    return input;
-  };
 });

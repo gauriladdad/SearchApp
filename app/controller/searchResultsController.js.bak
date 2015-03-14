@@ -1,13 +1,3 @@
-app.filter("myFilter", function(){
-    return function(input, test){
-        var newArray = [];
-        for(var x = 0; x < input.length; x+=2){
-             newArray.push(input[x]);   
-        }
-        return newArray;
-    }
-});
-
 app.controller('searchResultsController', function ($scope, $resource) {
 	
 	$scope.searchQuery="";
@@ -52,30 +42,50 @@ app.controller('searchResultsController', function ($scope, $resource) {
 	$scope.updateSearchResult = function(result) {	
 		var icons=[];
 		var iconObject;
-		
+
+		/* Read each object present in RelatedTopics,
+		It's either an Icon or Topics Array - which contains icon objects data */
 		angular.forEach(result["RelatedTopics"], function(value, key) {
 			var iconURL;
-			if(value.hasOwnProperty('Icon')){
-				
-				if($scope.isIcon(value["Icon"]))
-				{	
-					iconObject={
-						reference: value["FirstURL"], 
-						source: value["Icon"]["URL"], 
-						height: value["Icon"]["Height"],
-						width: value["Icon"]["Width"],
-						title: value["Text"]
-					};				
-					icons.push(iconObject);					
-				}
-			}
-			//else read data from Topics object - which is an Array that contains icon objects data
+			if(value.hasOwnProperty('Icon')){				
+				iconObject = $scope.getIconObject(value);
+				if(iconObject !== null && iconObject !== undefined)
+					if($scope.getItemIndexByField(icons, "source", value["Icon"]["URL"]) === -1){
+						icons.push(iconObject);									
+					}					
+			}			
+			else if(value.hasOwnProperty('Topics'))	{
+				angular.forEach(value["Topics"], function(topicValue, topicKey) {
+					if(topicValue.hasOwnProperty('Icon')){				
+						iconObject = $scope.getIconObject(topicValue);
+						if(iconObject !== null && iconObject !== undefined){
+							if(icons.indexOf(topicValue["Icon"]["URL"]) === -1){
+								icons.push(iconObject);									
+							}									
+						}
+					}
+				});
+			}			
 		});			
 		return icons;
 	};
+
+	$scope.getIconObject = function (valueObject){
+		var iconObject;
+		if($scope.isValidIcon(valueObject["Icon"]))
+		{	
+			iconObject={
+					reference: valueObject["FirstURL"], 
+					source: valueObject["Icon"]["URL"], 
+					height: valueObject["Icon"]["Height"],
+					width: valueObject["Icon"]["Width"],
+					title: valueObject["Text"]
+				};
+		}
+		return iconObject;
+	};
 	
-	
-	$scope.isIcon = function (iconObject)
+	$scope.isValidIcon = function (iconObject)
 	{		
 		var iconAvailable =false;
 		if(iconObject !== null && iconObject !== undefined && iconObject["URL"].length > 0)
@@ -84,4 +94,16 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		}
 		return iconAvailable;
 	};	
+
+	$scope.getItemIndexByField = function(targetArray, field, sourceValue) {
+		var targetArrayLen = targetArray.length;
+		var itemIndex = -1;
+		for(var i=0;i<targetArrayLen;i++) {
+			if(targetArray[i][field] === sourceValue){
+				itemIndex = i;
+				break;
+			}
+		}
+		return itemIndex;
+	};
 });

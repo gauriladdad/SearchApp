@@ -18,37 +18,13 @@
 	<!---result display area, displayed only if result data is available -->
 	<div data-ng-show="totalRecordsCount > 0">
 		<div class="row-fluid">
-			<div ng-repeat="item in searchResult" class="col-md-2 col-xs-2">
+			<div ng-repeat="item in searchResult'" class="col-md-2 col-xs-2">
 				<a href="{{item.reference}}" target="_blank">
 					<img ng-src="{{item.source}}" class="img-responsive thumbnail imageClass" title="{{item.title}}">
 				</a>
 				
 			</div>
-		</div>		
-		<!--<div id="grid" class="grid-container" ng-repeat="item in searchResult | rangeFilter " >
-			<div class="grid-tile" >
-				<a href="{{item.reference}}" target="_blank">
-					<img ng-src="{{item.source}}" title="{{item.title}}">
-				</a>
-
-				<a href="{{searchResult[($index * 2+1)].reference}}" target="_blank">
-					<img ng-src="{{searchResult[($index * 2+1)].source}}" title="{{searchResult[($index * 2+1)].title}}">
-				</a>
-
-				<a href="{{searchResult[($index * 3+1)].reference}}" target="_blank">
-					<img ng-src="{{searchResult[($index * 3+1)].source}}" title="{{searchResult[($index * 3+1)].title}}">
-				</a>
-
-				<a href="{{searchResult[($index * 4+1)].reference}}" target="_blank">
-					<img ng-src="{{searchResult[($index * 4+1)].source}}" title="{{searchResult[($index * 4+1)].title}}">
-				</a>
-				
-				
-			</div>
-		</div>-->
-		<script> $(function() { var wall = new freewall("#container"); wall.fitWidth(); }); </script>
-		
+		</div>				
 	</div>
-
 
 </div>
