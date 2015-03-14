@@ -33,4 +33,9 @@
 			</div> 
 		</div>		
 	</div>
+	
+	<div data-ng-show="totalRecordsCount === 0" class="noRecords">
+		<p class="text-muted">OOPS! No matching records found</p>
+		<a href="{{linkForMoreResults}}" target="_blank">For possible matches, please click here</a>
+	</div>	
 </div>

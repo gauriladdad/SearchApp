@@ -5,8 +5,11 @@ app.controller('searchResultsController', function ($scope, $resource) {
 	//the object that will hold images data to be rendered on UI
 	$scope.searchResult = [];
 
-	//total number of records matching search criteria
-	$scope.totalRecordsCount = 0;
+	/*total number of records matching search criteria 
+	set to -1 instead of 0 so no records found link is not shown */
+	$scope.totalRecordsCount=-1;
+	
+	$scope.linkForMoreResults="";
 	 
 	/* create object with angularJS resource service to get data from duckduckgo API */
 	var duckduckgoAPI = $resource("https://api.duckduckgo.com",
@@ -37,12 +40,17 @@ app.controller('searchResultsController', function ($scope, $resource) {
 					}				
 				});	
 				$scope.searchResult=icons;
-                $scope.totalRecordsCount = icons.length;
-            },
+				$scope.totalRecordsCount = icons.length;
+				if($scope.searchQuery.length > 0)
+				{
+					$scope.linkForMoreResults="https://duckduckgo.com/?q="+$scope.searchQuery;					
+				}					
+			},
 			//on failure
 			function( error ) {
 				$scope.searchResult = [];
-				$scope.totalRecordsCount = 0;
+				$scope.totalRecordsCount = -1;
+				$scope.linkForMoreResults="";									
 			}
 		);
 	};
