@@ -23,8 +23,20 @@ app.controller('searchResultsController', function ($scope, $resource) {
 			//on success
 			function( result ) {
 
-                $scope.searchResult=$scope.updateSearchResult(result);
-
+				var icons=[];
+				/* Read each object present in RelatedTopics,
+				It's either an Icon or Topics Array - which contains icon objects data */
+				angular.forEach(result["RelatedTopics"], function(value, key) {
+					if(value.hasOwnProperty('Topics'))	{
+						angular.forEach(value["Topics"], function(topicValue, topicKey) {
+							$scope.updateIconsArray(icons, topicValue);
+						});
+					}
+					else{
+						$scope.updateIconsArray(icons, value);
+					}				
+				});	
+				$scope.searchResult=icons;
                 $scope.totalRecordsCount = $scope.searchResult.length;
             },
 			//on failure
@@ -35,62 +47,32 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		);
 	};
 	
-	/* updateSearchResult :- This function returns an array containing data of images matching search result
-		input :- result : the result returned by duckduckgoAPI invokation
-		output:- icons Array : the array holding icons information like - source, height, width etc.
-	*/
-	$scope.updateSearchResult = function(result) {	
-		var icons=[];
-		var iconObject;
-
-		/* Read each object present in RelatedTopics,
-		It's either an Icon or Topics Array - which contains icon objects data */
-		angular.forEach(result["RelatedTopics"], function(value, key) {
-			var iconURL;
-			if(value.hasOwnProperty('Icon')){				
-				iconObject = $scope.getIconObject(value);
-				if(iconObject !== null && iconObject !== undefined)
-					if($scope.getItemIndexByField(icons, "source", value["Icon"]["URL"]) === -1){
-						icons.push(iconObject);									
-					}					
-			}			
-			else if(value.hasOwnProperty('Topics'))	{
-				angular.forEach(value["Topics"], function(topicValue, topicKey) {
-					if(topicValue.hasOwnProperty('Icon')){				
-						iconObject = $scope.getIconObject(topicValue);
-						if(iconObject !== null && iconObject !== undefined){
-							if($scope.getItemIndexByField(icons, "source", topicValue["Icon"]["URL"]) === -1){
-								icons.push(iconObject);									
-							}									
-						}
+	$scope.updateIconsArray = function (icons, valueObject) {		
+		if($scope.isIcon(valueObject))
+				{	
+					iconObject={
+						reference: valueObject["FirstURL"], 
+						source: valueObject["Icon"]["URL"], 
+						height: valueObject["Icon"]["Height"],
+						width: valueObject["Icon"]["Width"],
+						title: valueObject["Text"]
+					};
+					if($scope.getItemIndexByField(icons, "source", iconObject.source) === -1){
+						icons.push(iconObject);		
 					}
-				});
-			}			
-		});			
-		return icons;
-	};
-
-	$scope.getIconObject = function (valueObject){
-		var iconObject;
-		if($scope.isValidIcon(valueObject["Icon"]))
-		{	
-			iconObject={
-					reference: valueObject["FirstURL"], 
-					source: valueObject["Icon"]["URL"], 
-					height: valueObject["Icon"]["Height"],
-					width: valueObject["Icon"]["Width"],
-					title: valueObject["Text"]
-				};
-		}
-		return iconObject;
-	};
+				}
+	}
 	
-	$scope.isValidIcon = function (iconObject)
+	$scope.isIcon = function (valueObject)
 	{		
 		var iconAvailable =false;
-		if(iconObject !== null && iconObject !== undefined && iconObject["URL"].length > 0)
+		if(valueObject !== null && valueObject !== undefined && (valueObject.hasOwnProperty('Icon')))
 		{
-			iconAvailable=true;
+			var iconURL = valueObject["Icon"]["URL"];
+			if(iconURL.length > 0 && iconURL.indexOf(".ico", iconURL.length - 4) === -1)
+			{
+				iconAvailable=true;	
+			}			
 		}
 		return iconAvailable;
 	};	
