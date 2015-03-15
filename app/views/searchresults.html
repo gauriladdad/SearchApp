@@ -8,14 +8,12 @@
 				<div class="input-group">     
 				<input type="search" name="query" results=5 data-ng-model="searchQuery"
 						placeholder="Specify Search Text. e.g. Flower valley" 
-						class="form-control" required data-ng-change="searchQueryChange"/>
-				 
-					<span class="input-group-btn">
-						<button type="submit" class="btn btn-default" data-ng-click="search()"
-						ng-disabled="queryForm.query.$dirty && queryForm.query.$invalid">Search</button>
-						<!--$dirty	The user has interacted with the field.
-							$invalid The field content is invalid.-->
-					</span>
+						class="form-control" required/>
+				
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default" data-ng-click="search()"
+					data-ng-disabled="queryForm.query.$error.required">Search</button>
+				</span>
 				</div><!-- /input-group -->
 			</div><!-- /.col-lg-6 -->
 		</div><!-- /.row -->
