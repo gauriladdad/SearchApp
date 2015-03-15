@@ -9,7 +9,9 @@
 		<!-- this application uses bootstrap.css for styling app-->
 		<link href="content/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- application level styles file-->
-		<link href="content/css/site.css" rel="stylesheet" />				
+		<link href="content/css/site.css" rel="stylesheet" />	
+
+		<link rel="stylesheet" type="text/css" href="content/css/main.css" />		
 	</head>
 
 	<body>
@@ -17,7 +19,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="#">
 						<img alt="Brand" src="content/images/duckduckgo.jpg">		
 					</a>
 					<a class="navbar-brand" href='#/'>Search Using Duck Duck Go API</a>
@@ -39,17 +41,22 @@
 </html>
 
 <!-- load 3rd party libraries -->
+<script type="text/javascript" src="content/scripts/jquery.js"></script>
+<script type="text/javascript" src="content/scripts/masonry.pkgd.min.js"></script>
 
 <script type="text/javascript" src="content/scripts/angular.min.js"></script>
 <script type="text/javascript" src="content/scripts/angular-route.min.js"></script>
 <script type="text/javascript" src="content/scripts/angular-resource.min.js"></script>
+
 <!-- This repository contains a set of native AngularJS directives based on Bootstrap's markup and CSS. 
 As a result no dependency on jQuery or Bootstrap's JavaScript is required. -->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js"></script>
 
-<!-- Load app script -->
 <!-- Load app main script -->
 <script type="text/javascript" src="app/app.js"></script>
 
 <!-- Load controllers -->
 <script type="text/javascript" src="app/controller/searchResultsController.js"></script>
+
+<!-- Load directives -->
+<script type="text/javascript" src="app/directives/imageLoad.js"></script>

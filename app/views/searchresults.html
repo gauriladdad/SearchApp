@@ -21,24 +21,27 @@
 		</div><!-- /.row -->
 	</form>
 
-
 	<!---result display area, displayed only if result data is available -->
 	<div data-ng-show="searchResultData.totalRecordsCount > 0" class="sectionStyle">
 		<div class="row-fluid" class="sectionStyle"> 
 			<div class="blockWithTopSpacing">
 				<p class="text-muted">Showing {{searchResultData.totalRecordsCount}} images for {{searchResultData.query}}</p>
 			</div>
-			<div ng-repeat="item in searchResultData.searchResult" class="col-md-3 col-xs-2 imgContainer" id="row">
-				<a href="{{item.reference}}" target="_blank">
-					<img ng-src="{{item.source}}" class="imageClass" title="{{item.title}}"> 					
-				</a>				
-				<h2 ng-show="visible">{{item.source}}</h2>
-			</div> 
-		</div>		
+			<div id="imageContainer">
+				<div class="grid-sizer"></div>
+				<div ng-repeat="item in searchResultData.searchResult"  id='ID{{$index}}' class="item" >
+					<a href="{{item.reference}}" target="_blank">
+						<img class="image" data-ng-src="{{ item.source }}" image-load="imageLoaded( item )" title={{item.title}}/>						
+					</a>	
+				</div>
+			</div><!-- /imageContainer -->
+		</div><!-- /row-fluid -->		
 	</div>
-	
+
+	<!---result display area, displayed only if result returns no matches -->
 	<div data-ng-show="searchResultData.totalRecordsCount === 0" class="blockWithTopSpacing">
-		<p class="text-muted">OOPS! No matching records found</p>
-		<a href="{{searchResultData.linkForMoreResults}}" target="_blank">For possible matches, please click here</a>
+		<p class="text-muted">OOPS! No matching records found.</p>
+		<a href="{{searchResultData.linkForMoreResults}}" target="_blank">For possible matches, please click here.</a>
 	</div>	
+	
 </div>

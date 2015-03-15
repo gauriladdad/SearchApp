@@ -1,0 +1,39 @@
+/* This CSS has been taken from sample at http://creative-punch.net/2014/01/full-screen-image-gallery-using-css-masonry/ 
+This helps with creating necessary image gallery effects */
+.item {
+    float: left;
+    position: relative;
+    line-height: 1em;
+}
+
+.grid-sizer { width: 20%; }
+.item { width: 20%; }
+
+@media screen and (max-width: 1224px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 33.33%; }
+  .item { width: 33.33%; }
+}
+
+@media screen and (max-width: 720px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 50%; }
+  .item { width: 50%; }
+}
+
+@media screen and (max-width: 480px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 100%; }
+  .item { width: 100%; }
+}
+
+.image{
+    width: 100%;
+    margin: 0;
+    display: block;
+}
+
+.image:after {
+    clear:both;
+}
+
