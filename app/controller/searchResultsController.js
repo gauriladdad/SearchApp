@@ -39,6 +39,7 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		}
 		//if this condition is met, all the images are rendered in browser
 		if(i > 0 && i === value.length){
+			
 			//if masonry already has items, then reload the items before drawing
 			if($scope.reloadItemsInMasonry){				
 				$('#imageContainer').masonry("reloadItems");
@@ -51,6 +52,7 @@ app.controller('searchResultsController', function ($scope, $resource) {
 				});	
 				$scope.reloadItemsInMasonry = true;
 			}				
+			
 		}
 	}, true);
 			
@@ -61,9 +63,12 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		$scope.searchResultData.searchResult=[];
 		$scope.searchResultData.query = $scope.searchQuery;
 		//invoke get function on duckduckgo object
+				
 		duckduckgoAPI.get({ q: $scope.searchQuery , iax: 1, ia:"images", format:'json', pretty:1  }).$promise.then(
 			//on success
+			
 			function( result ) {				
+			
 				var icons=[];
 				/* Read each object present in RelatedTopics,
 				It's either an Icon or Topics Array - which contains icon objects data */
@@ -122,7 +127,7 @@ app.controller('searchResultsController', function ($scope, $resource) {
 		if(valueObject !== null && valueObject !== undefined && (valueObject.hasOwnProperty('Icon')))
 		{
 			var iconURL = valueObject["Icon"]["URL"];
-			if(iconURL.length > 0 )
+			if(iconURL.length > 0 && iconURL.indexOf(".ico", iconURL.length - 4) === -1)
 			{
 				iconAvailable=true;	
 			}			
