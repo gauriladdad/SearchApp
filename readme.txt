@@ -28,7 +28,7 @@ Network: Good 3g
 (This has been done using emulation feature available with Google chrome)
 
 ********** Credits ********** 
-1. Application development with AngularJS : https://angularjs.org/
+1. Application development with AngularJS : https://angularjs.org/ (version 0.9.0)
 
 2. Application wide CSS with Bootstrap : http://getbootstrap.com/
 
