@@ -38,3 +38,8 @@ Network: Good 3g
 
 1. Full-screen responsive gallery using CSS and Masonry: http://creative-punch.net/2014/01/full-screen-image-gallery-using-css-masonry/
 		
+
+********** Testing using MAMP ********** 
+1. Download the project to a location e.g. C:\Projects
+2. Point Document root of MAMP server to : C:\Projects
+3. In MAMP server window, click on Open WebStart page. This will launch a web page, click on "My Website"
