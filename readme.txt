@@ -1,6 +1,6 @@
 ********** Configuration **********
 Machine: Windows 7 64 bit 
-Server: apache-tomcat-7.0.59
+Server: apache-tomcat-7.0.59, MAMP
 Java version: jdk1.7.0_75
 Browsers supported: Chrome version 41.0, Firefox version 33.0.2, IE version 11.0
 Network: WI FI
