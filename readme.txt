@@ -3,6 +3,7 @@ This is a search application which allows user to search and browse various imag
 As these images are loaded from all over the web each has a dynamic size and dynamic loading time hence the rendering part is the trickiest in this application.
 
 ### Features
+
 1. Search for images matching word or phrases
 2. Hover over an image - show description of the image.
 3. Click of an image - redirect the user to provide more details. 
@@ -10,6 +11,7 @@ As these images are loaded from all over the web each has a dynamic size and dyn
 5. Retention of search history
 
 ### Tools used 
+
 1. Github repository. 
 2. AngularJS
 3. Bootstrap style
@@ -17,6 +19,7 @@ As these images are loaded from all over the web each has a dynamic size and dyn
 5. Tomcat 7.0.59 server with Java 1.7 / MAMP
 
 ### Device Support
+
 1. This application works well on windows platforms various browsers like: Google chrome, IE and Mozilla Firefox. 
 2. It also works well on devices like Apple IPad, Google nexus and Samsung galaxy note.
 (Tested using Chrome emulator)
@@ -26,7 +29,8 @@ NOTE:
 1. The application uses some of the standards like dependency injection. The usage of 
 AngularJS framework has enabled that to a great extend. 
 
-### Running the application 	
+###Running the application 	:
+
 **** MAMP (no additional step involved as with Tomcat) **** 	
 1. Please click on "Download ZIP" while on the page: https://github.com/gauriladdad/searchapp and unzip it.
 2. Please install MAMP : https://documentation.mamp.info/en/documentation/mamp-windows/
@@ -40,6 +44,7 @@ AngularJS framework has enabled that to a great extend.
 4. Once the tomcat server is started, you can hit URL : http://localhost:8080/searchapp/#/
 
 ********** Credits ********** 
+
 1. Application development with AngularJS : https://angularjs.org/ (version 0.9.0)
 2. Application wide CSS with Bootstrap : http://getbootstrap.com/
 3. Full-screen responsive gallery using CSS and Masonry with Angular watch feature: http://creative-punch.net/2014/01/full-screen-image-gallery-using-css-masonry/
