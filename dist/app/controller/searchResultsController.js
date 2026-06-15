@@ -34,30 +34,34 @@ app.controller("searchResultsController", function ($scope, $resource) {
     },
   );
 
+  //imageLoaded function - flags the resultant images as loaded.
+  $scope.imageLoaded = function (image) {
+    image.complete = true;
+  };
+
   /* watch function -  is to identify when all the resultant images are loaded in browser
 		This when complete - is the time masonry will be invoked */
   $scope.$watch(
     "searchResultData.searchResult",
-    function (value) {
-      if (value.length > 0) {
-        setTimeout(function () {
-          var $container = $("#imageContainer");
-
-          $container.imagesLoaded(function () {
-            if ($scope.reloadItemsInMasonry) {
-              $container.masonry("reloadItems");
-              $container.masonry("layout");
-            } else {
-              $container.masonry({
-                itemSelector: ".item",
-                columnWidth: ".grid-sizer",
-                percentPosition: true,
-              });
-
-              $scope.reloadItemsInMasonry = true;
-            }
+    function (value, oldValue) {
+      for (var i = 0; i < value.length; i++) {
+        if (value[i].complete === false) {
+          break;
+        }
+      }
+      //if this condition is met, all the images are rendered in browser
+      if (i > 0 && i === value.length) {
+        //if masonry already has items, then reload the items before drawing
+        if ($scope.reloadItemsInMasonry) {
+          $("#imageContainer").masonry("reloadItems");
+          $("#imageContainer").masonry();
+        } else if ($scope.reloadItemsInMasonry === false) {
+          $("#imageContainer").masonry({
+            itemSelector: ".item",
+            columnWidth: ".grid-sizer",
           });
-        }, 0);
+          $scope.reloadItemsInMasonry = true;
+        }
       }
     },
     true,
