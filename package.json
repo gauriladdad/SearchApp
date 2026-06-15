@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,7 @@
     "url": "https://github.com/gauriladdad/SearchApp/issues"
   },
   "homepage": "https://github.com/gauriladdad/SearchApp#readme",
-  "dependencies": {
-    "axios": "^1.18.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+  "devDependencies": {
+    "wrangler": "^4.100.0"
   }
 }

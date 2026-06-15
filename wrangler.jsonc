@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "search-image",
+  "main": "server.js",
   "compatibility_date": "2026-06-15",
 
   "assets": {

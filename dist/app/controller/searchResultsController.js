@@ -25,7 +25,7 @@ app.controller("searchResultsController", function ($scope, $resource) {
 
   /* create object with angularJS resource service to get data from Pexels API */
   var pexelsAPI = $resource(
-    "http://localhost:3000/search",
+    "/search",
     {},
     {
       get: {
