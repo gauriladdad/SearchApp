@@ -1,4 +1,8 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "search-image",
+  "compatibility_date": "2026-06-15",
+
   "assets": {
     "directory": "./dist",
   },
