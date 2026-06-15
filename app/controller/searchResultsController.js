@@ -25,15 +25,11 @@ app.controller("searchResultsController", function ($scope, $resource) {
 
   /* create object with angularJS resource service to get data from Pexels API */
   var pexelsAPI = $resource(
-    "https://api.pexels.com/v1/search",
+    "http://localhost:3000/search",
     {},
     {
       get: {
         method: "GET",
-        headers: {
-          Authorization:
-            "Sq13OShoT6J365mp4wy0QNTr4k9hW1hy3cZ4lhNt6pkILDki6UuRe7mH",
-        },
       },
     },
   );
@@ -41,33 +37,34 @@ app.controller("searchResultsController", function ($scope, $resource) {
   //imageLoaded function - flags the resultant images as loaded.
   $scope.imageLoaded = function (image) {
     image.complete = true;
-    // Trigger masonry layout recalculation as each image loads
-    setTimeout(function () {
-      $("#imageContainer").masonry("reloadItems").masonry("layout");
-    }, 0);
   };
 
-  /* watch function -  is to identify when search results arrive
-		Initialize masonry immediately, then refresh as images load */
+  /* watch function -  is to identify when all the resultant images are loaded in browser
+		This when complete - is the time masonry will be invoked */
   $scope.$watch(
     "searchResultData.searchResult",
     function (value, oldValue) {
-      if (value.length > 0 && value !== oldValue) {
-        // Initialize or reinitialize masonry as soon as results arrive
-        setTimeout(function () {
-          if (!$scope.reloadItemsInMasonry) {
-            $("#imageContainer").masonry({
-              itemSelector: ".item",
-              columnWidth: ".grid-sizer",
-            });
-            $scope.reloadItemsInMasonry = true;
-          } else {
-            $("#imageContainer").masonry("reloadItems").masonry("layout");
-          }
-        }, 0);
+      for (var i = 0; i < value.length; i++) {
+        if (value[i].complete === false) {
+          break;
+        }
+      }
+      //if this condition is met, all the images are rendered in browser
+      if (i > 0 && i === value.length) {
+        //if masonry already has items, then reload the items before drawing
+        if ($scope.reloadItemsInMasonry) {
+          $("#imageContainer").masonry("reloadItems");
+          $("#imageContainer").masonry();
+        } else if ($scope.reloadItemsInMasonry === false) {
+          $("#imageContainer").masonry({
+            itemSelector: ".item",
+            columnWidth: ".grid-sizer",
+          });
+          $scope.reloadItemsInMasonry = true;
+        }
       }
     },
-    false,
+    true,
   );
 
   /* search function - which will be invoked on search button click*/
@@ -77,7 +74,7 @@ app.controller("searchResultsController", function ($scope, $resource) {
     $scope.searchResultData.query = $scope.searchQuery;
     //invoke get function on Pexels API
 
-    pexelsAPI.get({ query: $scope.searchQuery, per_page: 30 }).$promise.then(
+    pexelsAPI.get({ query: $scope.searchQuery, per_page: 80 }).$promise.then(
       //on success
 
       function (result) {

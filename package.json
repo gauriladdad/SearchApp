@@ -1,0 +1,27 @@
+{
+  "name": "searchapp",
+  "version": "1.0.0",
+  "description": "This is a search application which allows user to search and browse various images matching to the search criteria. For retrieving results matching the search criteria, this application makes use of Duckduckgo API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauriladdad/SearchApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gauriladdad/SearchApp/issues"
+  },
+  "homepage": "https://github.com/gauriladdad/SearchApp#readme",
+  "dependencies": {
+    "axios": "^1.18.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
