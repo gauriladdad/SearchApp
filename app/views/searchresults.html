@@ -1,45 +1,85 @@
 <div class="container" class="sectionStyle">
-
-	<!-- search query input area,
+  <!-- search query input area,
 	use angularJS form validation-->
-	<form name="queryForm" novalidate>	
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="input-group">     
-				<input type="search" name="query" results=5 data-ng-model="searchQuery"
-						placeholder="Specify Search Text. e.g. blue sky" 
-						class="form-control" required/>
-				
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default" data-ng-click="search()"
-					data-ng-disabled="queryForm.query.$error.required">Search</button>
-				</span>
-				</div><!-- /input-group -->
-			</div><!-- /.col-lg-6 -->
-		</div><!-- /.row -->
-	</form>
+  <form name="queryForm" novalidate>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input
+            type="search"
+            name="query"
+            results="5"
+            data-ng-model="searchQuery"
+            placeholder="Specify Search Text. e.g. blue sky"
+            class="form-control"
+            required
+          />
 
-	<!---result display area, displayed only if result data is available -->
-	<div data-ng-show="searchResultData.totalRecordsCount > 0" class="sectionStyle">
-		<div class="row-fluid" class="sectionStyle"> 
-			<div class="blockWithTopSpacing">
-				<p class="text-muted">Showing {{searchResultData.totalRecordsCount}} images for {{searchResultData.query}}</p>
-			</div>
-			<div id="imageContainer">
-				<div class="grid-sizer"></div>
-				<div ng-repeat="item in searchResultData.searchResult"  id='ID{{$index}}' class="item" >
-					<a href="{{item.reference}}" target="_blank">
-						<img class="image" data-ng-src="{{ item.source }}" image-load="imageLoaded( item )" title={{item.title}}/>						
-					</a>	
-				</div>
-			</div><!-- /imageContainer -->
-		</div><!-- /row-fluid -->		
-	</div>
+          <span class="input-group-btn">
+            <button
+              type="submit"
+              class="btn btn-default"
+              data-ng-click="search()"
+              data-ng-disabled="queryForm.query.$error.required"
+            >
+              Search
+            </button>
+          </span>
+        </div>
+        <!-- /input-group -->
+      </div>
+      <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+  </form>
 
-	<!---result display area, displayed only if result returns no matches -->
-	<div data-ng-show="searchResultData.totalRecordsCount === 0" class="blockWithTopSpacing">
-		<p class="text-muted">OOPS! No matching records found.</p>
-		<a href="{{searchResultData.linkForMoreResults}}" target="_blank">For possible matches, please click here.</a>
-	</div>	
-	
+  <!---result display area, displayed only if result data is available -->
+  <div
+    data-ng-show="searchResultData.totalRecordsCount > 0"
+    class="sectionStyle"
+  >
+    <div class="row-fluid" class="sectionStyle">
+      <div class="blockWithTopSpacing">
+        <p class="text-muted">
+          Showing {{searchResultData.totalRecordsCount}} images for
+          {{searchResultData.query}}
+        </p>
+      </div>
+      <div id="imageContainer">
+        <div class="grid-sizer"></div>
+        <div
+          ng-repeat="item in searchResultData.searchResult"
+          id="ID{{$index}}"
+          class="item"
+        >
+          <a href="{{item.reference}}" target="_blank">
+            <div
+              class="image-wrapper"
+              ng-style="{'aspect-ratio': item.width + '/' + item.height}"
+            >
+              <img
+                class="image"
+                data-ng-src="{{ item.source }}"
+                image-load="imageLoaded( item )"
+                title="{{item.title}}"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- /imageContainer -->
+    </div>
+    <!-- /row-fluid -->
+  </div>
+
+  <!---result display area, displayed only if result returns no matches -->
+  <div
+    data-ng-show="searchResultData.totalRecordsCount === 0"
+    class="blockWithTopSpacing"
+  >
+    <p class="text-muted">OOPS! No matching records found.</p>
+    <a href="{{searchResultData.linkForMoreResults}}" target="_blank"
+      >For possible matches, please click here.</a
+    >
+  </div>
 </div>
