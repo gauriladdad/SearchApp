@@ -1,62 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html data-ng-app="DuckDuckGoSearchApp">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <title>Search With DuckDuckGo API</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
- 		<title>Search With DuckDuckGo API</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- this application uses bootstrap.css for styling app-->
+    <link href="content/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- application level styles file-->
+    <link href="content/css/site.css" rel="stylesheet" />
 
-		<!-- this application uses bootstrap.css for styling app-->
-		<link href="content/css/bootstrap.min.css" rel="stylesheet" />
-		<!-- application level styles file-->
-		<link href="content/css/site.css" rel="stylesheet" />	
+    <link rel="stylesheet" type="text/css" href="content/css/main.css" />
+  </head>
 
-		<link rel="stylesheet" type="text/css" href="content/css/main.css" />		
-	</head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="content/images/duckduckgo.jpg" />
+          </a>
+          <a class="navbar-brand" href="#/">Search Using Duck Duck Go API</a>
+        </div>
+        <div>
+          <ul class="nav navbar-right">
+            <li><a href="#/about">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-	<body>
-	
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-				<a class="navbar-brand" href="#">
-						<img alt="Brand" src="content/images/duckduckgo.jpg">		
-					</a>
-					<a class="navbar-brand" href='#/'>Search Using Duck Duck Go API</a>
-				</div>
-				<div>
-					<ul class="nav navbar-right"> 
-						<li><a href="#/about">About</a></li>
-					</ul>
-				</div>
-			</div>												
-		</nav>
-
-		<section id="body">
-			<div data-ng-view="" class="sectionStyle"></div>
-		</section>
-
-	</body>
-
+    <section id="body">
+      <div data-ng-view="" class="sectionStyle"></div>
+    </section>
+  </body>
 </html>
 
 <!-- load 3rd party libraries -->
 <script type="text/javascript" src="content/scripts/jquery.js"></script>
-<script type="text/javascript" src="content/scripts/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script
+  type="text/javascript"
+  src="content/scripts/masonry.pkgd.min.js"
+></script>
 
 <script type="text/javascript" src="content/scripts/angular.min.js"></script>
-<script type="text/javascript" src="content/scripts/angular-route.min.js"></script>
-<script type="text/javascript" src="content/scripts/angular-resource.min.js"></script>
+<script
+  type="text/javascript"
+  src="content/scripts/angular-route.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="content/scripts/angular-resource.min.js"
+></script>
 
 <!-- This repository contains a set of native AngularJS directives based on Bootstrap's markup and CSS. 
 As a result no dependency on jQuery or Bootstrap's JavaScript is required. -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js"></script>
+<script
+  type="text/javascript"
+  src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js"
+></script>
 
 <!-- Load app main script -->
 <script type="text/javascript" src="app/app.js"></script>
 
 <!-- Load controllers -->
-<script type="text/javascript" src="app/controller/searchResultsController.js"></script>
+<script
+  type="text/javascript"
+  src="app/controller/searchResultsController.js"
+></script>
 
 <!-- Load directives -->
 <script type="text/javascript" src="app/directives/imageLoad.js"></script>
